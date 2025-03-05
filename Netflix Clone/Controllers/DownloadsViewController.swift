@@ -12,7 +12,7 @@ class DownloadsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .systemOrange
+        view.backgroundColor = .systemBackground
     }
     
 
