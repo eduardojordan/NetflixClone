@@ -42,8 +42,8 @@ class HeroHeaderUIView: UIView {
     private func addGradient() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [
-            UIColor.black.withAlphaComponent(0.0).cgColor, // Transparente pero con base negra
-            UIColor.black.withAlphaComponent(1).cgColor
+            UIColor.black.withAlphaComponent(0.0).cgColor,
+            UIColor.black.withAlphaComponent(1.0).cgColor
         ]
         gradientLayer.frame = bounds
         layer.addSublayer(gradientLayer)
