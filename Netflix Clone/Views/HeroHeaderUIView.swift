@@ -42,8 +42,8 @@ class HeroHeaderUIView: UIView {
     private func addGradient() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [
-            UIColor.clear.cgColor,
-            UIColor.systemBackground.cgColor
+            UIColor.black.withAlphaComponent(0.0).cgColor, // Transparente pero con base negra
+            UIColor.black.withAlphaComponent(1).cgColor
         ]
         gradientLayer.frame = bounds
         layer.addSublayer(gradientLayer)
@@ -61,13 +61,13 @@ class HeroHeaderUIView: UIView {
     private func applyContraints() {
         let playButtonContraints = [
             playButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 90),
-            playButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50),
+            playButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -25),
             playButton.widthAnchor.constraint(equalToConstant: 100)
         ]
     
     let downloadButtonContraints = [
         downloadButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -90),
-        downloadButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50),
+        downloadButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -25),
         downloadButton.widthAnchor.constraint(equalToConstant: 100)
     ]
     NSLayoutConstraint.activate(playButtonContraints)

@@ -19,7 +19,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         overrideUserInterfaceStyle = .dark
-        view.backgroundColor = .black
+        view.backgroundColor = .systemBackground
         view.addSubview(homeFeedTable)
         homeFeedTable.dataSource = self
         homeFeedTable.delegate = self
