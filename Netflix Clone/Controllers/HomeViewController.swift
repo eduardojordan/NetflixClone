@@ -9,6 +9,14 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    enum Sections: Int {
+        case TrendingMovies = 0
+        case Popular = 1
+        case TrendingTv = 2
+        case Upcoming = 3
+        case TopRated = 4
+    }
+    
     let sectionTitles: [String] = [
         "Trending Movies",
         "Polular",
@@ -35,11 +43,23 @@ class HomeViewController: UIViewController {
         let headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
         homeFeedTable.tableHeaderView = headerView
         configureNavBar()
+        fetchData()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         homeFeedTable.frame = view.bounds
+    }
+    
+    func fetchData() {
+        APICaller.shared.getTrendingMovies { results  in
+            switch results {
+            case .success(let movies):
+                print(movies)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 
     func configureNavBar() {
@@ -71,8 +91,60 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as? CollectionViewTableViewCell else {
             return UITableViewCell()
         }
+        
+        switch indexPath.section {
+        case Sections.TrendingMovies.rawValue:
+            APICaller.shared.getTrendingMovies { result in
+                switch result {
+                case .success(let titles):
+                    cell.configuration(with: titles)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        case Sections.TrendingTv.rawValue:
+            APICaller.shared.getTrendingTvs { result in
+                switch result {
+                case .success(let titles):
+                    cell.configuration(with: titles)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        case Sections.Popular.rawValue:
+            APICaller.shared.getPopular { result in
+                switch result {
+                case .success(let titles):
+                    cell.configuration(with: titles)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        case Sections.Upcoming.rawValue:
+            APICaller.shared.getUpcomingMovies { result in
+                
+                switch result {
+                case .success(let titles):
+                    cell.configuration(with: titles)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        case Sections.TopRated.rawValue:
+            APICaller.shared.getTopRate { result in
+                
+                switch result {
+                case .success(let titles):
+                    cell.configuration(with: titles)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        default:
+            return UITableViewCell()
+        }
         return cell
-
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -88,9 +160,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         header.textLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
         header.textLabel?.frame = CGRect(x: header.bounds.origin.x + 20, y: header.bounds.origin.y, width: 100, height: header.bounds.height)
         header.textLabel?.textColor = .white
-        if let text = header.textLabel?.text, !text.isEmpty {
-                header.textLabel?.text = text.prefix(1).uppercased() + text.dropFirst().lowercased()
-            }
+        header.textLabel?.text = header.textLabel?.text?.capitalizeFirstLetter()
+
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
