@@ -34,15 +34,14 @@ class SearchViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        
-        view.addSubview(discoverTable)
-        discoverTable.dataSource = self
-        discoverTable.delegate = self
         navigationItem.searchController = searchController
         navigationController?.navigationBar.tintColor = .white
         
+        view.addSubview(discoverTable)
         fetchSearch()
         searchController.searchResultsUpdater = self
+        discoverTable.dataSource = self
+        discoverTable.delegate = self
     }
     
     override func viewDidLayoutSubviews() {

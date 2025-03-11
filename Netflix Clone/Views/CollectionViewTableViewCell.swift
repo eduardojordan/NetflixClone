@@ -13,6 +13,7 @@ protocol CollectionViewTableViewCellDelegate: AnyObject {
 
 class CollectionViewTableViewCell: UITableViewCell {
     
+
     weak var delegate: CollectionViewTableViewCellDelegate?
     private var titles: [Title] = [Title]()
     static let identifier = "CollectionViewTableViewCell"
@@ -38,7 +39,7 @@ class CollectionViewTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-  
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         collectionView.frame = contentView.bounds
@@ -52,59 +53,71 @@ class CollectionViewTableViewCell: UITableViewCell {
     }
     
     private func downloadTitleAt(indexPath: IndexPath){
-        print("Downloading \(titles[indexPath.row].original_title ?? "")")
-    }
-    
-}
-
-extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier, for: indexPath) as? TitleCollectionViewCell else {
-            return UICollectionViewCell()
-        }
-        guard let model = titles[indexPath.row].poster_path else {
-            return UICollectionViewCell()
-        }
-        cell.configure(with: model)
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return titles.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
-        let title = titles[indexPath.row]
-        guard let titleName = title.original_name ?? title.original_title else {
-            return
-        }
+        //        print("Downloading \(titles[indexPath.row].original_title ?? "")")
         
-        APICaller.shared.getMovie(with: titleName  + "trailer") { result in
+        DataPersistenceManager.shared.downloadTitleWith(model: titles[indexPath.row]) { result in
             switch result {
-            case .success(let videoElement):
-                let title = self.titles[indexPath.row]
-                guard let titleOverview = title.overview else {
-                    return
-                }
-                let viewModel = TitlePreviewViewModel(title: titleName, youtubeView: videoElement, titleOverview: titleOverview)
-                self.delegate?.collectionViewTableViewCellDidTapCell(self, viewModel: viewModel)
+            case .success():
+                print("Dowloaded to Database")
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        let config = UIContextMenuConfiguration(
-            identifier: nil,
-            previewProvider: nil) { [weak self]  _ in
-                let dowloadAction = UIAction(title: "Download", subtitle: nil, image:nil, identifier: nil, discoverabilityTitle: nil, state: .off) {_ in
-                    self?.downloadTitleAt(indexPath: indexPath)
-                }
-                return UIMenu(title: "", image: nil, identifier:nil, options: .displayInline, children: [dowloadAction])
-            }
-        return config
+        
     }
 }
+    
+extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+        
+        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier, for: indexPath) as? TitleCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            guard let model = titles[indexPath.row].poster_path else {
+                return UICollectionViewCell()
+            }
+            cell.configure(with: model)
+            return cell
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+            return titles.count
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            collectionView.deselectItem(at: indexPath, animated: true)
+            let title = titles[indexPath.row]
+            guard let titleName = title.original_name ?? title.original_title else {
+                return
+            }
+            
+            APICaller.shared.getMovie(with: titleName  + "trailer") { result in
+                switch result {
+                case .success(let videoElement):
+                    let title = self.titles[indexPath.row]
+                    guard let titleOverview = title.overview else {
+                        return
+                    }
+                    let viewModel = TitlePreviewViewModel(title: titleName, youtubeView: videoElement, titleOverview: titleOverview)
+                    self.delegate?.collectionViewTableViewCellDidTapCell(self, viewModel: viewModel)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+            let config = UIContextMenuConfiguration(
+                identifier: nil,
+                previewProvider: nil) { [weak self]  _ in
+                    let dowloadAction = UIAction(title: "Download", subtitle: nil, image:nil, identifier: nil, discoverabilityTitle: nil, state: .off) {_ in
+                        self?.downloadTitleAt(indexPath: indexPath)
+                    }
+                    return UIMenu(title: "", image: nil, identifier:nil, options: .displayInline, children: [dowloadAction])
+                }
+            return config
+        }
+    
+    
+        
+    }
