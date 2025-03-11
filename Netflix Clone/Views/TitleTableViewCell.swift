@@ -9,8 +9,8 @@ import UIKit
 import SDWebImage
 
 class TitleTableViewCell: UITableViewCell {
-
-  static let identifier = "TitleTableViewCell"
+    
+    static let identifier = "TitleTableViewCell"
     
     private let playTitleButton: UIButton = {
         let button = UIButton()
@@ -35,7 +35,7 @@ class TitleTableViewCell: UITableViewCell {
         return imageView
     }()
     
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(titlesPosterUImageView)
@@ -62,7 +62,7 @@ class TitleTableViewCell: UITableViewCell {
         let playTitleButtonContraints = [
             playTitleButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             playTitleButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
-            ]
+        ]
         
         NSLayoutConstraint.activate(titlesPosteUImageViewContraints)
         NSLayoutConstraint.activate(titleLabelContraints)

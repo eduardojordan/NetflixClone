@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol SearchResultsViewControllerDelegate: AnyObject {
+    func searchResultsViewControllerDidTapItem(_ viewModel: TitlePreviewViewModel)
+}
+
 class SearchResultsViewController: UIViewController {
     
     public var titles: [Title] = [Title]()
+    
+    public weak var delegate: SearchResultsViewControllerDelegate?
     
     public let searchResultCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -21,16 +27,12 @@ class SearchResultsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         overrideUserInterfaceStyle = .dark
         view.backgroundColor = .systemBackground
-        
-        
         view.addSubview(searchResultCollectionView)
         
         searchResultCollectionView.delegate = self
         searchResultCollectionView.dataSource = self
-        
         
     }
     
@@ -56,5 +58,20 @@ extension SearchResultsViewController : UICollectionViewDataSource, UICollection
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        let title = titles[indexPath.row]
+        let titleName = title.original_name ?? ""
+        APICaller.shared.getMovie(with: titleName) { [weak self] result in
+            switch result {
+            case .success(let videoElement):
+                self?.delegate?.searchResultsViewControllerDidTapItem(TitlePreviewViewModel(title: title.original_title ?? "", youtubeView: videoElement, titleOverview: title.overview ?? ""))
+                
+            case .failure(let error ):
+                print(error.localizedDescription)
+            }
+        }
+    }
     
 }

@@ -8,15 +8,7 @@
 import UIKit
 import WebKit
 
-//protocol CollectionViewTableViewCellDelegate: AnyObject {
-//    func collectionViewTableViewCellDidTapCell(_ cell: CollectionViewTableViewCell,viewModel: TitlePreviewViewModel)
-//}
-
-
 class TitlePreviewViewController: UIViewController {
-    
-//    weak var delegate: CollectionViewTableViewCellDelegate?
-    
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -50,7 +42,6 @@ class TitlePreviewViewController: UIViewController {
         webView.translatesAutoresizingMaskIntoConstraints = false
         return webView
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +85,6 @@ class TitlePreviewViewController: UIViewController {
             downloadButton.heightAnchor.constraint(equalToConstant: 40),
         ]
         
-        
         NSLayoutConstraint.activate(webViewContraints)
         NSLayoutConstraint.activate(titleLabelConstraints)
         NSLayoutConstraint.activate(overviewLabelConstraints)
@@ -105,10 +95,7 @@ class TitlePreviewViewController: UIViewController {
     func configure(with model: TitlePreviewViewModel) {
         titleLabel.text = model.title
         overviewLabel.text = model.titleOverview
-        
-        guard let url = URL(string: "https://www.youtube.com/embed/\(model.youtubeView.id.videoId)") else {
-            return
-        }
+        guard let url = URL(string: "https://www.youtube.com/embed/\(model.youtubeView.id.videoId)") else {return}
         webView.load(URLRequest(url: url))
     }
 
