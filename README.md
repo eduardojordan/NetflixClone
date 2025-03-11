@@ -4,13 +4,12 @@ NetflixClone is an iOS application developed in Swift 5 that allows users to exp
 
 ##📸 Screenshots
 
-![Imagen de NetflixClone](https://github.com/eduardojordan/NetflixClone/blob/master/1.png?raw=true)
-
-![Imagen de NetflixClone](https://github.com/eduardojordan/NetflixClone/blob/master/2.png?raw=true)
-
-![Imagen de NetflixClone](https://github.com/eduardojordan/NetflixClone/blob/master/3.png?raw=true)
-
-![Imagen de NetflixClone](https://github.com/eduardojordan/NetflixClone/blob/master/4.png?raw=true)
+<p align="center">
+  <img src="https://github.com/eduardojordan/NetflixClone/blob/master/1.png?raw=true" width="300"/>
+  <img src="https://github.com/eduardojordan/NetflixClone/blob/master/2.png?raw=true" width="300"/>
+  <img src="https://github.com/eduardojordan/NetflixClone/blob/master/3.png?raw=true" width="300"/>
+  <img src="https://github.com/eduardojordan/NetflixClone/blob/master/4.png?raw=true" width="300"/>
+</p>
 
 
 A placeholder image is included below:
