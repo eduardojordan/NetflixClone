@@ -1,12 +1,10 @@
-📺 NetflixClone
+#📺 NetflixClone
 
 NetflixClone is an iOS application developed in Swift 5 that allows users to explore popular movies and TV shows, perform searches, and download content for offline viewing. It uses the TheMovieDB and YouTube APIs to fetch data and play trailers.
 
-#📸 Screenshots
+##📸 Screenshots
 
 A placeholder image is included below:
-
-
 
 🚀 Features
 
@@ -22,11 +20,11 @@ A placeholder image is included below:
 
 ⚡ Optimized image loading with SDWebImage
 
-🏗 Architecture
+##🏗 Architecture
 
-The project follows the MVC (Model-View-Controller) pattern for better separation of concerns and scalability. Extensions are used to improve code modularity.
+The project follows the MVC (Model-View-Controller) pattern for better separation of concerns and scalability. Extensions are used to improve code modularity, and no Storyboard or XIBs were used, ensuring a fully code-driven approach to the user interface. Only the UIKit framework was utilized for the development of the user interface, and CoreData is used to handle data persistence
 
-🔧 Technologies & Tools
+##🔧 Technologies & Tools
 
 Swift 5
 
@@ -42,19 +40,17 @@ YouTube API → Trailer playback
 
 Core Data → Persistence management for downloads
 
-📋 Requirements
+##📋 Requirements
 
 iOS 18 or later
 
 Xcode 16
 
-CocoaPods installed
-
 TheMovieDB API Key
 
 YouTube API Key
 
-📦 Installation
+##📦 Installation
 
 Clone this repository:
 
@@ -62,15 +58,12 @@ git clone https://github.com/your-username/NetflixClone.git
 
 Open the project in Xcode 16
 
-Ensure CocoaPods is installed and run:
-
-pod install
 
 Replace API_KEY in the appropriate files with your TheMovieDB and YouTube API keys
 
 Run the app on a simulator or real device
 
-🔑 API Configuration
+##🔑 API Configuration
 
 To use this project, you need API keys:
 
@@ -80,32 +73,7 @@ YouTube API: Get your key here
 
 Add these keys to the appropriate configuration files.
 
-🗂 Project Structure
-
-NetflixClone/
-│── Models/
-│── Views/
-│── Controllers/
-│── Extensions/
-│── Services/
-│── Persistence/
-│── Resources/
-
-Models/: Data structures for movies and TV shows.
-
-Views/: UI components.
-
-Controllers/: Logic for handling user interaction.
-
-Extensions/: Utility functions and helpers.
-
-Services/: API calls and network logic.
-
-Persistence/: Core Data implementation.
-
-Resources/: Assets and configurations.
-
-📜 Usage
+##📜 Usage
 
 Open the app and explore trending movies and TV shows
 
@@ -131,11 +99,11 @@ Watch trailers directly within the app
 
 ✅ Transition UI to SwiftUI for a modern interface
 
-🤝 Contribution
+##🤝 Contribution
 
 If you’d like to contribute, feel free to fork the project and submit a pull request with your improvements. All contributions are welcome!
 
-🙌 Acknowledgments
+##🙌 Acknowledgments
 
 TheMovieDB for providing movie and TV show data.
 
@@ -143,9 +111,8 @@ YouTube API for enabling trailer playback.
 
 SDWebImage for efficient image caching.
 
-📄 License
+##📄 License
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
 💡 If you like this project, give it a ⭐ on GitHub!
-
