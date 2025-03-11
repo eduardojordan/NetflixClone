@@ -44,6 +44,8 @@ class HomeViewController: UIViewController {
         homeFeedTable.tableHeaderView = headerView
         configureNavBar()
         fetchData()
+        
+//        navigationController?.pushViewController(TitlePreviewViewController(), animated: true)
     }
     
     override func viewDidLayoutSubviews() {
@@ -91,6 +93,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as? CollectionViewTableViewCell else {
             return UITableViewCell()
         }
+        
+        cell.delegate = self
         
         switch indexPath.section {
         case Sections.TrendingMovies.rawValue:
@@ -176,3 +180,17 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+extension HomeViewController: CollectionViewTableViewCellDelegate {
+    func collectionViewTableViewCellDidTapCell(_ cell: CollectionViewTableViewCell, viewModel: TitlePreviewViewModel) {
+        DispatchQueue.main.async{ [weak self] in
+            let vc = TitlePreviewViewController()
+//            vc.delegate = self
+            vc.configure(with: viewModel)
+            self?.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+     
+    }
+    
+    
+}
