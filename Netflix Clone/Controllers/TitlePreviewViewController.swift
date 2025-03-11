@@ -26,7 +26,6 @@ class TitlePreviewViewController: UIViewController {
     }()
     
     private let downloadButton: UIButton = {
-        
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .red
