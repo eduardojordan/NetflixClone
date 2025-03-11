@@ -13,7 +13,6 @@ protocol CollectionViewTableViewCellDelegate: AnyObject {
 
 class CollectionViewTableViewCell: UITableViewCell {
     
-
     weak var delegate: CollectionViewTableViewCellDelegate?
     private var titles: [Title] = [Title]()
     static let identifier = "CollectionViewTableViewCell"
@@ -53,8 +52,7 @@ class CollectionViewTableViewCell: UITableViewCell {
     }
     
     private func downloadTitleAt(indexPath: IndexPath){
-        //        print("Downloading \(titles[indexPath.row].original_title ?? "")")
-        
+
         DataPersistenceManager.shared.downloadTitleWith(model: titles[indexPath.row]) { result in
             switch result {
             case .success():
@@ -106,7 +104,7 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
             }
         }
         
-        func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+    private func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemsAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
             let config = UIContextMenuConfiguration(
                 identifier: nil,
                 previewProvider: nil) { [weak self]  _ in
@@ -117,7 +115,5 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
                 }
             return config
         }
-    
-    
         
     }

@@ -140,7 +140,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             }
         case Sections.Upcoming.rawValue:
             APICaller.shared.getUpcomingMovies { result in
-                
                 switch result {
                 case .success(let titles):
                     cell.configuration(with: titles)

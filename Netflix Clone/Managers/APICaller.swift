@@ -22,7 +22,7 @@ class APICaller {
     static let shared = APICaller()
     
     func getTrendingMovies(completion: @escaping (Result<[Title], Error >) -> Void) {
-        guard let url = URL(string: "\(Constants.baseURL)/3/trending/tv/day?api_key=\(Constants.API_KEY)") else {return}
+        guard let url = URL(string: "\(Constants.baseURL)/3/trending/all/day?api_key=\(Constants.API_KEY)") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
             guard let data = data, error == nil else {
                 return
@@ -71,7 +71,7 @@ class APICaller {
     }
     
     func getPopular(completion: @escaping (Result<[Title], Error >) -> Void) {
-        guard let url = URL(string: "\(Constants.baseURL)/3/movie/populard?api_key=\(Constants.API_KEY)&language=en-US&page=1") else {return}
+        guard let url = URL(string: "\(Constants.baseURL)/3/movie/popular?api_key=\(Constants.API_KEY)&language=en-US&page=1") else {return}
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
             guard let data = data, error == nil else {
                 return
@@ -141,7 +141,7 @@ class APICaller {
         }
         task.resume()
     }
-    // CAMBIAR TITULO CON ALGO DE YOUTUBE
+
     func getMovie(with query:String, completion: @escaping (Result<VideoElement, Error >) -> Void) {
         guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
         guard  let url = URL(string: "\(Constants.YoutuveBaseUrl)q=\(query)&key=\(Constants.YouTubeAPI_KEY)") else {return}

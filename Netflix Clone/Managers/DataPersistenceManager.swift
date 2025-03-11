@@ -77,8 +77,6 @@ class DataPersistenceManager {
         }catch {
             completion(.failure(DatabaseError.failedToDeleteData))
         }
-        
-        
     }
     
 }

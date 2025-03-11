@@ -89,7 +89,6 @@ class TitlePreviewViewController: UIViewController {
         NSLayoutConstraint.activate(titleLabelConstraints)
         NSLayoutConstraint.activate(overviewLabelConstraints)
         NSLayoutConstraint.activate(downloadButtonContrainst)
-       
     }
     
     func configure(with model: TitlePreviewViewModel) {

@@ -27,6 +27,20 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(discoverTable)
+        setupNavigationBar()
+        fetchSearch()
+        searchController.searchResultsUpdater = self
+        discoverTable.dataSource = self
+        discoverTable.delegate = self
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        discoverTable.frame = view.bounds
+    }
+    
+    func setupNavigationBar() {
         overrideUserInterfaceStyle = .dark
         view.backgroundColor = .systemBackground
         title = "Search"
@@ -37,16 +51,6 @@ class SearchViewController: UIViewController {
         navigationItem.searchController = searchController
         navigationController?.navigationBar.tintColor = .white
         
-        view.addSubview(discoverTable)
-        fetchSearch()
-        searchController.searchResultsUpdater = self
-        discoverTable.dataSource = self
-        discoverTable.delegate = self
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        discoverTable.frame = view.bounds
     }
     
     private func fetchSearch() {

@@ -19,13 +19,7 @@ class DownloadsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        overrideUserInterfaceStyle = .dark
-        view.backgroundColor = .systemBackground
-        title = "Downloads"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationItem.largeTitleDisplayMode = .always
-        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        setupNavigationBar()
         view.addSubview(downloadedTable)
         downloadedTable.delegate = self
         downloadedTable.dataSource = self
@@ -36,6 +30,15 @@ class DownloadsViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         downloadedTable.frame = view.bounds
+    }
+    
+     func setupNavigationBar() {
+        overrideUserInterfaceStyle = .dark
+        view.backgroundColor = .systemBackground
+        title = "Downloads"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
     }
     
     private func fetchLocalStorageForDowload() {
@@ -51,7 +54,6 @@ class DownloadsViewController: UIViewController {
             }
         }
     }
-    
     
 }
 extension DownloadsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -107,7 +109,5 @@ extension DownloadsViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
-
-    
     
 }

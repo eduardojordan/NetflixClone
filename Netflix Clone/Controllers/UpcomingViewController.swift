@@ -19,23 +19,27 @@ class UpcomingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.addSubview(upcomingTable)
+        setupNavigationBar()
+        fetchUpcoming()
+        upcomingTable.dataSource = self
+        upcomingTable.delegate = self
+       
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        upcomingTable.frame = view.bounds
+    }
+    
+    func setupNavigationBar(){
         overrideUserInterfaceStyle = .dark
         view.backgroundColor = .systemBackground
         title = "Upcoming"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        
-        view.addSubview(upcomingTable)
-        upcomingTable.dataSource = self
-        upcomingTable.delegate = self
-        
-        fetchUpcoming()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        upcomingTable.frame = view.bounds
     }
     
     private func fetchUpcoming() {
