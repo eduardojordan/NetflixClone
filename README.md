@@ -1,8 +1,9 @@
-#📺 NetflixClone
+
+<h1 style="font-size: 40px;">📺 NetflixClone</h1>
 
 NetflixClone is an iOS application developed in Swift 5 that allows users to explore popular movies and TV shows, perform searches, and download content for offline viewing. It uses the TheMovieDB and YouTube APIs to fetch data and play trailers.
 
-##📸 Screenshots
+<h1 style="font-size: 40px;">📸 Screenshots</h1>
 
 <p align="center">
   <img src="https://github.com/eduardojordan/NetflixClone/blob/master/1.png?raw=true" width="200" hspace="10"/>
@@ -14,9 +15,7 @@ NetflixClone is an iOS application developed in Swift 5 that allows users to exp
 </p>
 
 
-A placeholder image is included below:
-
-🚀 Features
+<h2 style="font-size: 35px;">🚀 Features</h2>
 
 📌 Browse trending movies and TV shows
 
@@ -30,11 +29,12 @@ A placeholder image is included below:
 
 ⚡ Optimized image loading with SDWebImage
 
-##🏗 Architecture
+
+<h2 style="font-size: 35px;">🏗 Architecture</h2>
 
 The project follows the MVC (Model-View-Controller) pattern for better separation of concerns and scalability. Extensions are used to improve code modularity, and no Storyboard or XIBs were used, ensuring a fully code-driven approach to the user interface. Only the UIKit framework was utilized for the development of the user interface, and CoreData is used to handle data persistence
 
-##🔧 Technologies & Tools
+<h2 style="font-size: 35px;">🔧 Technologies & Tools</h2>
 
 Swift 5
 
@@ -50,7 +50,7 @@ YouTube API → Trailer playback
 
 Core Data → Persistence management for downloads
 
-##📋 Requirements
+<h2 style="font-size: 35px;">📋 Requirements</h2>
 
 iOS 18 or later
 
@@ -60,7 +60,7 @@ TheMovieDB API Key
 
 YouTube API Key
 
-##📦 Installation
+<h2 style="font-size: 35px;">📦 Installation</h2>
 
 Clone this repository:
 
@@ -73,7 +73,7 @@ Replace API_KEY in the appropriate files with your TheMovieDB and YouTube API ke
 
 Run the app on a simulator or real device
 
-##🔑 API Configuration
+<h2 style="font-size: 35px;">🔑 API Configuration</h2>
 
 To use this project, you need API keys:
 
@@ -83,7 +83,7 @@ YouTube API: Get your key here
 
 Add these keys to the appropriate configuration files.
 
-##📜 Usage
+<h2 style="font-size: 35px;">#📜 Usage</h2>
 
 Open the app and explore trending movies and TV shows
 
@@ -93,7 +93,7 @@ Download content for offline viewing
 
 Watch trailers directly within the app
 
-🔮 Future Enhancements
+<h2 style="font-size: 35px;">🔮 Future Enhancements</h2>
 
 ✅ Add user authentication
 
@@ -109,11 +109,11 @@ Watch trailers directly within the app
 
 ✅ Transition UI to SwiftUI for a modern interface
 
-##🤝 Contribution
+<h2 style="font-size: 35px;">🤝 Contribution</h2>
 
 If you’d like to contribute, feel free to fork the project and submit a pull request with your improvements. All contributions are welcome!
 
-##🙌 Acknowledgments
+<h2 style="font-size: 35px;">🙌 Acknowledgments</h2>
 
 TheMovieDB for providing movie and TV show data.
 
@@ -121,7 +121,7 @@ YouTube API for enabling trailer playback.
 
 SDWebImage for efficient image caching.
 
-##📄 License
+<h2 style="font-size: 35px;">📄 License</h2>
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
