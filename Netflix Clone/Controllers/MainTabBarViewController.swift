@@ -31,11 +31,20 @@ class MainTabBarViewController: UITabBarController {
         vc3.tabBarItem.image = UIImage(systemName: "magnifyingglass")
         vc4.tabBarItem.image = UIImage(systemName: "arrow.down.to.line")
         
+        tabBar.tintColor = .white
+        tabBar.barTintColor = .black
+        tabBar.unselectedItemTintColor = .lightGray
+        
         vc1.title = "Home"
         vc2.title = "Coming Soon"
         vc3.title = "Tap Search"
         vc4.title = "Downloads"
-        tabBar.tintColor = .label
+       
+        for vc in [vc1, vc2, vc3, vc4] {
+            vc.navigationBar.barTintColor = .black
+            vc.navigationBar.tintColor = .white
+            vc.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        }
         
         setViewControllers([vc1,vc2,vc3,vc4], animated: true)
         

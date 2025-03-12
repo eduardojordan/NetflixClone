@@ -21,6 +21,18 @@ class SearchViewController: UIViewController {
         let controller = UISearchController(searchResultsController: SearchResultsViewController())
         controller.searchBar.placeholder = "Search Movie or Tv Show"
         controller.searchBar.searchBarStyle = .minimal
+        
+        if let textField = controller.searchBar.value(forKey: "searchField") as? UITextField {
+            textField.textColor = .white
+            textField.tintColor = .white
+            textField.keyboardAppearance = .dark
+            
+            textField.attributedPlaceholder = NSAttributedString(
+                string: "Search Movie or Tv Show",
+                attributes: [NSAttributedString.Key.foregroundColor: UIColor.white.withAlphaComponent(0.7)]
+            )
+        }
+        
         return controller
     }()
     
@@ -50,7 +62,11 @@ class SearchViewController: UIViewController {
         navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         navigationItem.searchController = searchController
         navigationController?.navigationBar.tintColor = .white
-        
+        if let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+            textField.textColor = .white
+            textField.tintColor = .white
+            textField.keyboardAppearance = .dark
+        }
     }
     
     private func fetchSearch() {
